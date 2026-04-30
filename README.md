@@ -1,3 +1,7 @@
+# Public link:
+You can visit the public version of this site here:
+[https://helpful-sawine-73f40d.netlify.app/](https://helpful-sawine-73f40d.netlify.app/)
+
 # Sleepoutside - Fronend starter code
 
 ## Description
