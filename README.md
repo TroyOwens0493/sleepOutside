@@ -1,24 +1,46 @@
-# Public link:
-You can visit the public version of this site here:
-[https://helpful-sawine-73f40d.netlify.app/](https://helpful-sawine-73f40d.netlify.app/)
+# Astro Starter Kit: Basics
 
-# Sleepoutside - Fronend starter code
+```sh
+pnpm create astro@latest -- --template basics
+```
 
-## Description
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-Use this as a starting point to complete the WDD 360 team activity: the SleepOutside web application. It scaffolds out a simple web app with Vite support to bundle up our assets.
+## 🚀 Project Structure
 
-## Prerequisites
+Inside of your Astro project, you'll see the following folders and files:
 
-- You must have Node installed. Visit [https://byui-cit.github.io/learning-modules/modules/general/node-installation/](https://byui-cit.github.io/learning-modules/modules/general/node-installation/).
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets
+│   │   └── astro.svg
+│   ├── components
+│   │   └── Welcome.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
+└── package.json
+```
 
-## Setup
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
-- `npm install`
-- `npm run start` starts up a local server and updates on any JS or CSS/SCSS changes.
+## 🧞 Commands
 
-## Other commands
+All commands are run from the root of the project, from a terminal:
 
-- `npm run build` to build final files when you are ready to turn in.
-- `npm run lint` to run ESLint against your code to find errors.
-- `npm run format` to run Prettier to automatically format your code.
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
