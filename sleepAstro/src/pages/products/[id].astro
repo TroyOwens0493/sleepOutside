@@ -17,32 +17,30 @@ type Props = CollectionEntry<"products">;
 const product = Astro.props;
 ---
 <Layout>
-  <script src="../../js/product.ts"></script>
+    <script src="../../js/product.ts"></script>
   
       <main class="divider">
       <section class="product-detail">
-        <h3>Marmot</h3>
+        <h3>{product.data.brand.name}</h3>
 
-        <h2 class="divider">Ajax Tent - 3-Person, 3-Season</h2>
+        <h2 class="divider">{product.data.nameWithoutBrand}</h2>
 
         <img
           class="divider"
-          src="../images/tents/marmot-ajax-tent-3-person-3-season-in-pale-pumpkin-terracotta~p~880rr_01~320.jpg"
-          alt="Marmot Ajax tent"
+          src={product.data.image}
+          alt={product.data.name}
         />
 
-        <p class="product-card__price">$199.99</p>
+        <p class="product-card__price">{product.data.listPrice}</p>
 
-        <p class="product__color">Pale Pumpkin/Terracotta</p>
+        <p class="product__color">{product.data.colors[0].colorName}</p>
 
         <p class="product__description">
-          Get out and enjoy nature with Marmot&#39;s Ajax tent, featuring a
-          smart design with durable, waterproof construction and two doors for
-          easy access.
+          {product.data.descriptionHtmlSimple}
         </p>
 
         <div class="product-detail__add">
-          <button id="addToCart" data-id="880RR">Add to Cart</button>
+          <button id="addToCart" data-id={product.id}>Add to Cart</button>
         </div>
       </section>
     </main>
