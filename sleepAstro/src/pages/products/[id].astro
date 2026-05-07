@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+// map though all products to create a page for each one
+export async function getStaticPaths() {
+  const products = await getCollection("products");
+
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: product
+  }));
+}
+type Props = CollectionEntry<"products">;
+
+// get the product data from the props to use in the template below. The actual data is in product.data
+const product = Astro.props;
+---
+<Layout>
+  <script src="../../js/product.ts"></script>
+  
+    <!-- Product details will go here -->
+  
+</Layout>
