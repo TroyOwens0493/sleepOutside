@@ -15,8 +15,10 @@ type Props = CollectionEntry<"products">;
 
 // get the product data from the props to use in the template below. The actual data is in product.data
 const product = Astro.props;
+const title = product.data.name;
 ---
-<Layout>
+<Layout {title}>
+  
     <script src="../../js/product.ts"></script>
   
       <main class="divider">
