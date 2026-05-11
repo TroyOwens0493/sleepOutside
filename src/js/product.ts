@@ -1,13 +1,11 @@
 import type { Product } from "./types.mts";
-import { getLocalStorage, setLocalStorage } from "./utils.mts";
+import { getLocalStorage, setLocalStorage, ensureArray } from "./utils.mts";
 import { findProductById } from "./productData.mts";
 
 function addProductToCart(product: Product) {
   let cart = getLocalStorage("so-cart");
 
-  if (!Array.isArray(cart)) {
-    cart = cart ? [cart] : [];
-  }
+  cart = ensureArray(cart);
 
   cart.push(product);
 
