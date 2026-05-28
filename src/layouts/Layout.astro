@@ -1,7 +1,7 @@
 ---
 import '../css/style.css';
 
-import UserMenu from '../components/UserMenu.svelte';
+import UserMenu from '../js/components/UserMenu.svelte';
 let {title} = Astro.props;
 
 ---
@@ -21,7 +21,7 @@ let {title} = Astro.props;
       </div>
       <nav class="menu-right">
         <div class="user-menu-container">
-          <UserMenu />
+          <UserMenu client:load/>
         </div>
         <div class="cart">
           <a
