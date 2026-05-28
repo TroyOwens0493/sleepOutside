@@ -3,6 +3,7 @@
     import { getProducts } from "../js/productData.mts";
     import type { Product } from "../js/types.mts";
     import { getParam } from "../js/utils.mjs";
+     import ProductSummary from "./ProductSummary.svelte";
 
     // declare these out here as state so we can us it in our template below
     let category = $state("");
@@ -23,16 +24,6 @@
 
 <ul class="product-list">
     {#each products as product}
-        <li class="product-card">
-            <a href={`/products/${product.id}/`}>
-                <img
-                    src={product.images.primaryMedium}
-                    alt={product.name}
-                />
-                <h3 class="card__brand">{product.brand.name}</h3>
-                <h2 class="card__name">{product.nameWithoutBrand}</h2>
-                <p class="product-card__price">${product.finalPrice}</p>
-            </a>
-        </li>
+       <ProductSummary {product} />
     {/each}
 </ul>
