@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { getProducts } from "../productData.mts";
-    import type { Product } from "../types.mts";
-    import { getParam } from "../../js/utils.mjs";
+    import { getProducts } from "../js/productData.mts";
+    import type { Product } from "../js/types.mts";
+    import { getParam } from "../js/utils.mjs";
 
     // declare these out here as state so we can us it in our template below
     let category = $state("");
