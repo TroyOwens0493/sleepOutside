@@ -296,3 +296,33 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.category-card {
+  color: black;
+  text-decoration: none;
+}
+
+.category-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.category-card h2 {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
