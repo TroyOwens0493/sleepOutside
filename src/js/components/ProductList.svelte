@@ -1,41 +1,20 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { getProducts } from "../productData.mts";
+  import type { Product } from "../types.mts";
+  import { getParam } from "../js/utils.mjs";
 
-  let visible = $state(false);
+// declare these out here as state so we can us it in our template below
+  let category = $state(""); 
+  let products:Product[] = $state([]);
 
-  function openUserMenu(e: MouseEvent) {
-    // Stop the click from reaching the window listener immediately
-    e.stopPropagation();
-    visible = !visible;
+  async function init() {
+    category = getParam("category") || ""
+    const data = await getProducts(category);
+    products = data.results;
   }
 
-  // Named function required for removal
-  function closeMenu() {
-    visible = false;
-  }
-
-  // Named function required for removal
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "Escape") {
-      closeMenu();
-    }
-  }
-
-  onMount(() => {
-    // 1. Add Listeners
-    // if the user clicks outside the menu, scrolls the page, or hits the `esc` key close the menu.
-    window.addEventListener("click", closeMenu);
-    window.addEventListener("scroll", closeMenu);
-    window.addEventListener("keydown", handleKeydown);
-
-    // 2. Return Cleanup Function
-    // Svelte runs this function automatically when the component unmounts
-    return () => {
-      window.removeEventListener("click", closeMenu);
-      window.removeEventListener("scroll", closeMenu);
-      window.removeEventListener("keydown", handleKeydown);
-    };
-  });
+  onMount(init);
 </script>
 
-<h2>Products</h2>
+<h2>Top products: {category}</h2>
