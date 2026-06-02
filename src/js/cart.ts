@@ -13,7 +13,7 @@ function cartItemTemplate(item: Product) {
   <li class="cart-card ">
     <a href="#" class="cart-card__image">
     <img
-      src="${item.image}"
+      src="${item.images.primarySmall}"
       alt="${item.name}"
     />
     </a>
