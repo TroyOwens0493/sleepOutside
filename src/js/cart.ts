@@ -10,8 +10,7 @@ function renderCartContents() {
 
 function cartItemTemplate(item: Product) {
     const newItem = `
-  <li class="cart-card divider">
-    <button type="button" class="cart-card__remove" aria-label="Remove ${item.name} from cart">&times;</button>
+  <li class="cart-card ">
     <a href="#" class="cart-card__image">
     <img
       src="${item.image}"
@@ -23,6 +22,7 @@ function cartItemTemplate(item: Product) {
     </a>
     <p class="cart-card__color">${item.colors[0].colorName}</p>
     <p class="cart-card__quantity">qty: 1</p>
+    <button type="button" class="cart-card__remove" aria-label="Remove ${item.name} from cart">&times;</button>
     <p class="cart-card__price">$${item.finalPrice}</p>
   </li>
 `;
