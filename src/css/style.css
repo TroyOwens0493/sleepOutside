@@ -326,3 +326,25 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.product-detail__pricing {
+  margin: 1rem 0;
+}
+
+.product-detail__discount {
+  margin-top: 0.5rem;
+}
+
+.product-detail__retail {
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.product-detail__savings {
+  display: inline-block;
+  background-color: #f4d35e;
+  color: #222;
+  font-weight: bold;
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.4rem;
+}

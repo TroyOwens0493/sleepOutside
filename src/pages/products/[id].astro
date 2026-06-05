@@ -16,6 +16,12 @@ type Props = CollectionEntry<"products">;
 // get the product data from the props to use in the template below. The actual data is in product.data
 const product = Astro.props;
 const title = product.data.name;
+
+const retailPrice = product.data.suggestedRetailPrice;
+const finalPrice = product.data.finalPrice;
+const discountAmount = retailPrice - finalPrice;
+const discountPercent = Math.round((discountAmount / retailPrice) * 100);
+const hasDiscount = discountAmount > 0;
 ---
 <Layout {title}>
   
@@ -33,7 +39,23 @@ const title = product.data.name;
           alt={product.data.name}
         />
 
-        <p class="product-card__price">{product.data.listPrice}</p>
+          <div class="product-detail__pricing">
+            <p class="product-card__price">
+              ${finalPrice.toFixed(2)}
+            </p>
+
+            {hasDiscount && (
+              <div class="product-detail__discount">
+                <p class="product-detail__retail">
+                  Retail: <s>${retailPrice.toFixed(2)}</s>
+                </p>
+
+                <p class="product-detail__savings">
+                  Save {discountPercent}% (${discountAmount.toFixed(2)})
+                </p>
+              </div>
+            )}
+          </div>
 
         <p class="product__color">{product.data.colors[0].colorName}</p>
 
