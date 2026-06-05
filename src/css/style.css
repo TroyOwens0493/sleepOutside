@@ -278,6 +278,64 @@ button {
   grid-column: 3;
 }
 
+.cart-icon {
+  display: inline-block;
+  position: relative;
+}
+
+.cart-icon svg {
+  display: block;
+  transform-origin: center;
+}
+
+.cart-icon.cart-icon--animate svg {
+  animation: cart-bounce 0.7s ease;
+}
+
+.cart-icon.cart-icon--animate::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  animation: cart-pulse 0.7s ease-out;
+}
+
+@keyframes cart-bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.25) rotate(-8deg);
+  }
+
+  50% {
+    transform: scale(0.95) rotate(6deg);
+  }
+
+  75% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cart-pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
