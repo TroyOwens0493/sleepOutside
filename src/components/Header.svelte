@@ -5,9 +5,7 @@
 <header class="divider">
     <div class="logo">
         <img src="/images/noun_Tent_2517.svg" alt="tent for logo" />
-        <a href="./pages/index.astro">
-            Sleep<span class="highlight">Outside</span></a
-        >
+        <a href="/"> Sleep<span class="highlight">Outside</span></a>
     </div>
     <nav class="menu-right">
         <div class="user-menu-container">
