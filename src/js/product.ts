@@ -12,14 +12,14 @@ function addProductToCart(product: Product) {
 }
 
 function animateCartIcon() {
-    const cartIcon = document.querySelector(".cart-icon");
+    const cartIcon = document.querySelector<HTMLElement>(".cart-icon");
 
     if (!cartIcon) return;
 
     cartIcon.classList.remove("cart-icon--animate");
 
     // restart animation if clicked multiple times
-    void (cartIcon as HTMLElement).offsetWidth;
+    void cartIcon.offsetWidth;
 
     cartIcon.classList.add("cart-icon--animate");
 
