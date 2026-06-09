@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const title = "Product Not Found";
+---
+
+<Layout {title}>
+  <main class="divider">
+    <section class="error-page">
+      <h1>Product Not Found</h1>
+
+      <p>
+        Sorry, we couldn't find the product you're looking for.
+      </p>
+
+      <p>
+        The product may have been removed or the link may be incorrect.
+      </p>
+
+      <a href="/product-list" class="button">
+        Browse Products
+      </a>
+    </section>
+  </main>
+</Layout>
