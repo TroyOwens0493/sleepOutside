@@ -14,7 +14,7 @@ let {title} = Astro.props;
   </head>
   <body>
     <main>
-       <Header />
+       <Header client:load/>
 		<slot />
 	</main>
     <footer>&copy;NOT a real business</footer>

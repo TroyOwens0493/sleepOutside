@@ -9,7 +9,7 @@
     </div>
     <nav class="menu-right">
         <div class="user-menu-container">
-            <UserMenu client:load />
+            <UserMenu />
         </div>
         <div class="cart">
             <a
