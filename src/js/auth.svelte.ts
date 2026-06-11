@@ -39,7 +39,7 @@ export function logout() {
 }
 
 export function checkAuth() {
-  const userData = localStorage();
+  const userData = getLocalStorage("so-user");
   if (userData) {
     userStore.user = userData.user;
     userStore.token = userData.token;
