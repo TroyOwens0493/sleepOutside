@@ -9,7 +9,7 @@ interface UserStore {
     },
     token: string
 },
-export const userStore = $State( {isLoggedIn: false, user: {}, token: ''} as UserStore);
+export const userStore = $state( {isLoggedIn: false, user: {}, token: ''} as UserStore);
 
 export async function login(email: string, password: string) {
   const loginRes = await fetch(BASE_URL + "users/login", {
