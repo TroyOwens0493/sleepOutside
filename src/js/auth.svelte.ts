@@ -28,7 +28,13 @@ export async function login(email: string, password: string) {
     throw new Error("Invalid email or password");
   }
   const data = await loginRes.json();
-  console.log("loginData", data);
+    userStore.isLoggedIn = true;
+    userStore.token = data.token;
+    userStore.user = {
+        _id: data._id, 
+        name: data.name, 
+        email: data.email
+    }
 }
 
 export function logout() {
