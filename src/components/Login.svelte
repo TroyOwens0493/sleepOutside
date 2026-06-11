@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { login, userStore } from "../js/auth.svelte.ts";
-  import { setLocalStorage } from "../js/utils.mts";
+  import { onMount } from "svelte";
+  import { login } from "../js/auth.svelte.ts";
+  import { getParam } from "../js/utils.mts";
 
   let {
     onSuccess = (path) => {
       window.location.href = path;
-    }
+    },
   } = $props<{
     onSuccess?: (data: { email: string }) => void;
   }>();
@@ -27,6 +28,12 @@
       errorMessage = error.message;
     }
   }
+
+  onMount(() => {
+    // we added the getParam function to utils in Team 5
+    const param = getParam("redirect");
+    if (param) redirectPath = param;
+  });
 </script>
 
 <h2>Login</h2>
@@ -77,3 +84,4 @@
     text-align: center;
   }
 </style>
+
