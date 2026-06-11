@@ -1,4 +1,6 @@
-node_modules
-dist
-tmp
-.astro
+node_modules/
+dist/
+tmp/
+.astro/
+.DS_Store
+.env
