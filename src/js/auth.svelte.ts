@@ -26,6 +26,16 @@ export async function login(email: string, password: string) {
 export function logout() {}
 
 export function checkAuth() {
-    
+    const userData = localStorage();
+    if (userData) {
+        userStore.user = userData.user;
+        userStore.token = userData.token;
+        userStore.isLoggedIn = true;    
+    } else {
+        userStore.user = {};
+        userStore.token = '';
+        userStore.isLoggedIn = false;    
+    }
+    return userData;
 }
 
