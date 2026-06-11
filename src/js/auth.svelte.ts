@@ -51,7 +51,7 @@ export function checkAuth() {
     userStore.token = userData.token;
     userStore.isLoggedIn = true;
   } else {
-    userStore.user = {};
+    userStore.user = undefined;
     userStore.token = "";
     userStore.isLoggedIn = false;
   }
