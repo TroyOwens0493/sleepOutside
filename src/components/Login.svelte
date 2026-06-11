@@ -1,23 +1,30 @@
 <script lang="ts">
-// what is this?  We give the option to pass a function into our login component that will get called on a successful login. If no function is passed it defaults to one that will redirect the user to another page (like Home).
-  let { onSuccess = (path) => { window.location.href = path;} } = $props<{
+  import { login, userStore } from "../js/auth.svelte.ts";
+  import { setLocalStorage } from "../js/utils.mts";
+
+  let {
+    onSuccess = (path) => {
+      window.location.href = path;
+    }
+  } = $props<{
     onSuccess?: (data: { email: string }) => void;
   }>();
 
-  let email = $state("user@example.com");
+  let email = $state("test@test.com");
   let password = $state("");
   let errorMessage = $state("");
+  let redirectPath = "/";
 
-  function loginHandler(event: Event) {
+  async function loginHandler(event: Event) {
     event.preventDefault();
     // Handle login logic here
-    if (email === "user@example.com" && password === "password") {
-      alert(`Email: ${email}\nPassword: ${password}`);
-      errorMessage = ""; // Clear error message on successful login
-      // Call the success callback with user data
-      onSuccess("/");
-    } else {
-      errorMessage = "Invalid email or password"; // Simulate a login error for demonstration purposes
+    try {
+      const results = await login(email, password);
+
+      onSuccess(redirectPath);
+    } catch (error: any) {
+      console.log(error);
+      errorMessage = error.message;
     }
   }
 </script>
