@@ -33,11 +33,25 @@ const hasDiscount = discountAmount > 0;
 
         <h2 class="divider">{product.data.nameWithoutBrand}</h2>
 
-        <img
-          class="divider"
-          src=`../${product.data.image}`
-          alt={product.data.name}
-        />
+        <picture>
+          <source
+            media="(min-width: 1200px)"
+            srcset={product.data.images.primaryExtraLarge}
+          />
+          <source
+            media="(min-width: 800px)"
+            srcset={product.data.images.primaryLarge}
+          />
+          <source
+            media="(min-width: 500px)"
+            srcset={product.data.images.primaryMedium}
+          />
+          <img
+            class="divider"
+            src={product.data.images.primarySmall}
+            alt={product.data.name}
+          />
+        </picture>
 
           <div class="product-detail__pricing">
             <p class="product-card__price">

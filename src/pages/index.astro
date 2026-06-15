@@ -99,6 +99,37 @@ const title = "Home";
           </li>
         </ul>
       </section>
+
+      <section class="newsletter">
+        <h2>Sign Up for Our Newsletter</h2>
+        <p>Get the latest gear, tips, and deals delivered to your inbox.</p>
+        <form class="newsletter__form" name="newsletter" id="newsletterForm">
+          <label for="newsletterName">
+            Name
+            <input
+              type="text"
+              id="newsletterName"
+              name="name"
+              autocomplete="name"
+              placeholder="Your name"
+              required
+            />
+          </label>
+          <label for="newsletterEmail">
+            Email
+            <input
+              type="email"
+              id="newsletterEmail"
+              name="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+            />
+          </label>
+          <button type="submit">Subscribe</button>
+          <p class="newsletter__status" id="newsletterStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
     </main>
   <script src="../js/main.ts"></script>
 </Layout>

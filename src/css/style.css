@@ -230,12 +230,13 @@ button {
 
 .product-detail {
   padding: 1em;
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
 }
 
 .product-detail img {
   width: 100%;
+  height: auto;
 }
 
 /* Start cart list card styles */
@@ -489,4 +490,64 @@ footer {
   color: white;
   text-decoration: none;
   border-radius: 0.5rem;
+}
+
+.newsletter {
+  max-width: 500px;
+  margin: 2em auto;
+  padding: 1.5em;
+  background-color: #f7f7f7;
+  border: 1px solid var(--light-grey);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.newsletter h2 {
+  margin-top: 0;
+  color: var(--secondary-color);
+}
+
+.newsletter p {
+  margin: 0.5em 0 1em;
+}
+
+.newsletter__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+  text-align: left;
+}
+
+.newsletter__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  font-weight: bold;
+}
+
+.newsletter__form input {
+  padding: 0.5em;
+  font-size: 1em;
+  font-family: var(--font-body);
+  border: 1px solid var(--light-grey);
+  border-radius: 0.25rem;
+}
+
+.newsletter__form button {
+  margin-top: 0.5em;
+}
+
+.newsletter__status {
+  margin: 0.5em 0 0;
+  text-align: center;
+  font-weight: bold;
+  min-height: 1.2em;
+}
+
+.newsletter__status--success {
+  color: green;
+}
+
+.newsletter__status--error {
+  color: var(--tertiary-color, #b00020);
 }
