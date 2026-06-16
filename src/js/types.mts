@@ -17,6 +17,7 @@ export interface Product {
   brand: Brand;
   listPrice: number;
   finalPrice: number;
+  quantity?: number;
 }
 
 export interface Review {
