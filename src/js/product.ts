@@ -3,12 +3,22 @@ import { getLocalStorage, setLocalStorage } from "./utils.mts";
 import { findProductById } from "./productData.mts";
 
 function addProductToCart(product: Product) {
-    let currentCartProducts = getLocalStorage("so-cart");
+    let currentCartProducts = getLocalStorage("so-cart") || [];
 
-    if (!currentCartProducts) currentCartProducts = [];
+    const existingProduct = currentCartProducts.find(
+        (item: Product) => item.id === product.id
+    );
 
-    const next = [product, ...currentCartProducts];
-    setLocalStorage("so-cart", next);
+    if (existingProduct) {
+        existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+    } else {
+        currentCartProducts.unshift({
+            ...product,
+            quantity: 1
+        });
+    }
+
+    setLocalStorage("so-cart", currentCartProducts);
 }
 
 function animateCartIcon() {

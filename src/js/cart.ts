@@ -10,6 +10,7 @@ function renderCartContents() {
 
   addRemoveListeners();
   renderCartTotal(cartItems);
+  addQuantityListeners();
 }
 
 function renderCartTotal(cartItems: Product[]) {
@@ -25,7 +26,7 @@ function renderCartTotal(cartItems: Product[]) {
   }
 
   const total = cartItems.reduce((sum, item) => {
-    return sum + Number(item.finalPrice);
+    return sum + Number(item.finalPrice) * (item.quantity || 1);
   }, 0);
 
   cartFooter.classList.remove("hide");
@@ -53,6 +54,52 @@ function addRemoveListeners() {
   });
 }
 
+function updateQuantity(id: string, change: number) {
+  const cartItems = getLocalStorage("so-cart") || [];
+
+  const item = cartItems.find(
+    (product: Product) => product.id === id
+  );
+
+  if (!item) return;
+
+  item.quantity = (item.quantity || 1) + change;
+
+  if (item.quantity <= 0) {
+    const updatedCart = cartItems.filter(
+      (product: Product) => product.id !== id
+    );
+
+    setLocalStorage("so-cart", updatedCart);
+  } else {
+    setLocalStorage("so-cart", cartItems);
+  }
+
+  renderCartContents();
+}
+
+function addQuantityListeners() {
+  document
+    .querySelectorAll(".qty-increase")
+    .forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const id = (e.currentTarget as HTMLButtonElement).dataset.id;
+
+        if (id) updateQuantity(id, 1);
+      });
+    });
+
+  document
+    .querySelectorAll(".qty-decrease")
+    .forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const id = (e.currentTarget as HTMLButtonElement).dataset.id;
+
+        if (id) updateQuantity(id, -1);
+      });
+    });
+}
+
 function cartItemTemplate(item: Product) {
   return `
     <li class="cart-card divider">
@@ -65,16 +112,29 @@ function cartItemTemplate(item: Product) {
       </a>
 
       <p class="cart-card__color">${item.colors[0].colorName}</p>
-      <p class="cart-card__quantity">qty: 1</p>
+        <p class="cart-card__quantity">
+          Qty:
+          <button
+            class="qty-btn qty-decrease"
+            data-id="${item.id}"
+          >−</button>
 
-      <button
-        type="button"
-        class="cart-card__remove"
-        data-id="${item.id}"
-        aria-label="Remove ${item.name} from cart"
-      >
-        ×
-      </button>
+            <span class="qty-value">${item.quantity || 1}</span>
+
+          <button
+            class="qty-btn qty-increase"
+            data-id="${item.id}"
+          >+</button>
+        </p>
+
+        <button
+          type="button"
+          class="cart-card__remove"
+          data-id="${item.id}"
+          aria-label="Remove ${item.name} from cart"
+        >
+          ×
+        </button>
 
       <p class="cart-card__price">$${item.finalPrice}</p>
     </li>
