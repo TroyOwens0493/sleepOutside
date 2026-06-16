@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mts";
-const BASE_URL = process.env.PUBLIC_SERVER_URL;
+const BASE_URL = import.meta.env.PUBLIC_SERVER_URL;
 
 interface UserStore {
   isLoggedIn: boolean;
