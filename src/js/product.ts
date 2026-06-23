@@ -1,6 +1,7 @@
 import type { Product } from "./types.mts";
 import { getLocalStorage, setLocalStorage } from "./utils.mts";
 import { findProductById } from "./productData.mts";
+import { updateCartCount } from "./cartCount";
 
 function addProductToCart(product: Product) {
     let currentCartProducts = getLocalStorage("so-cart") || [];
@@ -19,6 +20,7 @@ function addProductToCart(product: Product) {
     }
 
     setLocalStorage("so-cart", currentCartProducts);
+    updateCartCount();
 }
 
 function animateCartIcon() {
