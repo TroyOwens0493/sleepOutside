@@ -581,3 +581,34 @@ footer {
   font-weight: bold;
   color: black;
 }
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+
+  border-radius: 999px;
+
+  background: red;
+  color: white;
+
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.cart-count.hide {
+  display: none;
+}

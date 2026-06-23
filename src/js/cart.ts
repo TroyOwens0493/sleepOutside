@@ -1,5 +1,6 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import type { Product } from "./types.mjs";
+import { updateCartCount } from "./cartCount";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
@@ -43,6 +44,7 @@ function removeCartItem(event: Event) {
   const updatedCartItems = cartItems.filter((item: Product) => item.id !== id);
 
   setLocalStorage("so-cart", updatedCartItems);
+  updateCartCount();
   renderCartContents();
 }
 
@@ -71,8 +73,10 @@ function updateQuantity(id: string, change: number) {
     );
 
     setLocalStorage("so-cart", updatedCart);
+    updateCartCount();
   } else {
     setLocalStorage("so-cart", cartItems);
+    updateCartCount();
   }
 
   renderCartContents();
