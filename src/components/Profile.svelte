@@ -1,11 +1,11 @@
 <script lang="ts">
-  import {userStore, logout } from "../js/auth.svelte";
+  import ChangePassword from "./ChangePassword.svelte";
+  import { userStore, logout } from "../js/auth.svelte.ts";
   import { onMount } from "svelte";
   const baseURL = import.meta.env.PUBLIC_SERVER_URL;
-  let profile = $state("");
+  let profile = $state<{ message?: string }>({});
 
 async function getProfile() {
-    console.log(userStore.token);
     const res = await fetch(`${baseURL}users/protected`, {
       method: "GET",
       headers: {
@@ -30,6 +30,7 @@ async function getProfile() {
 
 {#if userStore.isLoggedIn}
   <p>{profile.message}</p>
+  <ChangePassword />
 {:else}
   <p>You must login to see this page</p>
 {/if}
