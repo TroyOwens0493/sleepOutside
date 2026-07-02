@@ -51,6 +51,7 @@
   
   <nav class="user__menu" class:open={visible}>
     <a href="/login">Login</a>
+    <a href="/signup">Sign Up</a>
     <a href="/profile">Profile</a>
     <a href="/orders">Orders</a>
   </nav>

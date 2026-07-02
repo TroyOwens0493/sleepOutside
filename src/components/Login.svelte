@@ -8,10 +8,10 @@
       window.location.href = path;
     },
   } = $props<{
-    onSuccess?: (data: { email: string }) => void;
+    onSuccess?: (path: string) => void;
   }>();
 
-  let email = $state("test@test.com");
+  let email = $state("");
   let password = $state("");
   let errorMessage = $state("");
   let redirectPath = "/";
@@ -20,7 +20,7 @@
     event.preventDefault();
     // Handle login logic here
     try {
-      const results = await login(email, password);
+      await login(email, password);
 
       onSuccess(redirectPath);
     } catch (error: any) {
@@ -58,6 +58,9 @@
   </label>
   <button type="submit">Login</button>
 </form>
+<p class="signup-link">
+  Need an account? <a href="/signup">Create one</a>
+</p>
 
 <style>
   .login-form {
@@ -88,6 +91,9 @@
   .error {
     color: red;
     margin-bottom: 1rem;
+    text-align: center;
+  }
+  .signup-link {
     text-align: center;
   }
 </style>

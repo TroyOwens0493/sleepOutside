@@ -1,0 +1,11 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Signup from "../../components/Signup.svelte";
+const title = "Create Account";
+---
+
+<Layout title={title}>
+  <section class="signup">
+    <Signup client:load />
+  </section>
+</Layout>
