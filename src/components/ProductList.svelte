@@ -7,23 +7,43 @@
 
     // declare these out here as state so we can us it in our template below
     let category = $state("");
+    let query = $state("");
     let products: Product[] = $state([]);
+    let loading = $state(true);
+    let error = $state("");
 
     async function init() {
         category = getParam("category") || "";
-        console.log("category", category);
-        const data = await getProducts(category);
-        console.log("data", data);
-        products = data.results;
+        query = getParam("q") || "";
+
+        try {
+            const data = await getProducts({ category, query });
+            products = data.results;
+        } catch {
+            error = "We couldn't load products right now. Please try again.";
+        } finally {
+            loading = false;
+        }
     }
 
     onMount(init);
 </script>
 
-<h2>Top products: {category}</h2>
+<main class="products product-results">
+    <h1>{query ? `Search results for “${query}”` : `Top products${category ? `: ${category}` : ""}`}</h1>
 
-<ul class="product-list">
-    {#each products as product}
-       <ProductSummary {product} />
-    {/each}
-</ul>
+    {#if loading}
+        <p role="status">Loading products…</p>
+    {:else if error}
+        <p class="product-results__message" role="alert">{error}</p>
+    {:else if products.length === 0}
+        <p class="product-results__message" role="status">No products matched your search.</p>
+    {:else}
+        <p class="product-results__count">{products.length} {products.length === 1 ? "product" : "products"}</p>
+        <ul class="product-list">
+            {#each products as product}
+                <ProductSummary {product} />
+            {/each}
+        </ul>
+    {/if}
+</main>

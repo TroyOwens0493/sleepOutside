@@ -8,6 +8,17 @@
         <a href="/"> Sleep<span class="highlight">Outside</span></a>
     </div>
     <nav class="menu-right">
+        <form class="site-search" action="/product-list/" method="get" role="search">
+            <label class="visually-hidden" for="site-search">Search products</label>
+            <input
+                id="site-search"
+                name="q"
+                type="search"
+                placeholder="Search products"
+                aria-label="Search products"
+            />
+            <button type="submit">Search</button>
+        </form>
         <div class="user-menu-container">
             <UserMenu />
         </div>
