@@ -13,11 +13,10 @@ interface ProductFilters {
   query?: string;
 }
 
-export async function getProducts(filters: ProductFilters | string = { category: "tents" }) {
-  const normalizedFilters = typeof filters === "string" ? { category: filters } : filters;
+export async function getProducts(filters: ProductFilters = { category: "tents" }) {
   const params = new URLSearchParams();
-  if (normalizedFilters.category) params.set("category", normalizedFilters.category);
-  if (normalizedFilters.query) params.set("q", normalizedFilters.query);
+  if (filters.category) params.set("category", filters.category);
+  if (filters.query) params.set("q", filters.query);
 
   const response = await fetch(`${baseURL}products/?${params}`);
   return (await convertToJson(response)) as ProductResults;

@@ -9,6 +9,7 @@
     let category = $state("");
     let query = $state("");
     let products: Product[] = $state([]);
+    let productCount = $state(0);
     let loading = $state(true);
     let error = $state("");
 
@@ -19,6 +20,7 @@
         try {
             const data = await getProducts({ category, query });
             products = data.results;
+            productCount = data.count;
         } catch {
             error = "We couldn't load products right now. Please try again.";
         } finally {
@@ -39,7 +41,7 @@
     {:else if products.length === 0}
         <p class="product-results__message" role="status">No products matched your search.</p>
     {:else}
-        <p class="product-results__count">{products.length} {products.length === 1 ? "product" : "products"}</p>
+        <p class="product-results__count">{productCount} {productCount === 1 ? "product" : "products"}</p>
         <ul class="product-list">
             {#each products as product}
                 <ProductSummary {product} />
