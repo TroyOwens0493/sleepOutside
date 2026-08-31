@@ -8,16 +8,29 @@ function convertToJson(res: Response) {
   }
 }
 
-export async function getProducts(category = "tents") {
-  const response = await fetch(baseURL + `products/?category=${category}`);
-  const product = (await convertToJson(response)) as Product;
-  console.log(product);
-  return product;
+interface ProductFilters {
+  category?: string;
+  query?: string;
+}
+
+export async function getProducts(filters: ProductFilters = { category: "tents" }) {
+  const params = new URLSearchParams();
+  if (filters.category) params.set("category", filters.category);
+  if (filters.query) params.set("q", filters.query);
+
+  const response = await fetch(`${baseURL}products/?${params}`);
+  return (await convertToJson(response)) as ProductResults;
 }
 
 export async function findProductById(id: string) {
   const response = await fetch(baseURL + `products/${id}`);
   const product = (await convertToJson(response)) as Product;
-  console.log(product);
   return product;
+}
+
+interface ProductResults {
+  count: number;
+  prev: string | null;
+  next: string | null;
+  results: Product[];
 }
